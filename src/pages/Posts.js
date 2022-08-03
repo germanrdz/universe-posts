@@ -3,6 +3,8 @@ import useSWR from "swr";
 
 import { H1 } from "../components/shared/Text";
 import Post from "../components/posts/Post";
+import Loading from "../components/shared/Loading";
+import Card from "../components/shared/Card";
 
 const Container = styled.div``;
 
@@ -22,14 +24,15 @@ function Posts () {
     fetcher
   );
 
-  if (error) return "An error has occurred.";
-  if (!data) return "Loading...";
+
 
   return (
     <Container>
-      <H1>Posts</H1>
+      <H1>All Posts</H1>
       <Content>
-        { data.map(post => (<Post key={post.id} post={post} />)) }
+        { !data && <Loading /> }
+        { error && <Card>An error has ocurred :( </Card>}
+        { data && data.map(post => (<Post key={post.id} post={post} />)) }
       </Content>
     </Container>
   );
