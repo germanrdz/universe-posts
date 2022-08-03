@@ -1,6 +1,7 @@
 import GlobalStyle from './styles/globalStyles';
 import Layout from './components/global/Layout';
 import Content from './components/global/Content';
+import Posts from './pages/Posts';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <GlobalStyle />
       <Layout>
         <Content>
-          This is content
+          <Posts />
         </Content>
       </Layout>
     </div>
