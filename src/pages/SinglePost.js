@@ -55,8 +55,7 @@ function PostPage () {
                 </Actions>            
               </>
             )}
-            { !comments && <Loading /> }
-            { comments &&  <CommentsList comments={comments} /> }
+            { comments && <CommentsList comments={comments} /> }
           </>
         )}
       </Content>      
