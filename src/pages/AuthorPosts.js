@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import useSWR from "swr";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import fetcher from '../utils/fetcher';
+import Title from "../components/shared/Title";
 import Actions from '../components/shared/Actions';
 import Post from "../components/posts/Post";
 import Loading from "../components/shared/Loading";
 import Card from "../components/shared/Card";
-import { H1 } from "../components/shared/Text";
 
 const Content = styled.div`
   display: grid;
@@ -18,7 +18,6 @@ const Content = styled.div`
 
 function AuthorPosts () {
   const { authorId } = useParams();
-  const navigate = useNavigate();
 
   const { data, error } = useSWR(
     "https://jsonplaceholder.typicode.com/posts",
@@ -34,7 +33,7 @@ function AuthorPosts () {
 
   return (
     <>
-      <H1>Author {authorId} Posts</H1>
+      <Title text={`Author ${authorId} Posts`} />
       <Content>
         { !data && <Loading /> }
         { error && <Card>An error has ocurred :( </Card>}
