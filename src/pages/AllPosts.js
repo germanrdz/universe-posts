@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import useSWR from "swr";
 
+import fetcher from '../utils/fetcher';
+import Title from "../components/shared/Title";
 import Post from "../components/posts/Post";
 import Loading from "../components/shared/Loading";
 import Card from "../components/shared/Card";
-import { H1 } from "../components/shared/Text";
 
 const Container = styled.div``;
 
@@ -15,8 +16,6 @@ const Content = styled.div`
   color: black;
 `;
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
 function AllPosts () {
   const { data, error } = useSWR(
     "https://jsonplaceholder.typicode.com/posts",
@@ -25,7 +24,7 @@ function AllPosts () {
 
   return (
     <Container>
-      <H1>All Posts</H1>
+      <Title text="All Posts" backButton={false} />
       <Content>
         { !data && <Loading /> }
         { error && <Card>An error has ocurred :( </Card>}

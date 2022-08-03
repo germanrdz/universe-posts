@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import useSWR from "swr";
 import { Link, useParams } from "react-router-dom";
 
+import fetcher from '../utils/fetcher';
+import Title from '../components/shared/Title';
+import Actions from '../components/shared/Actions';
 import Post from "../components/posts/Post";
 import Card from "../components/shared/Card";
 import Loading from "../components/shared/Loading";
@@ -11,21 +14,6 @@ import { H1 } from "../components/shared/Text";
 const Container = styled.div`
 `;
 
-const Actions = styled.div`
-  text-align: right;
-  margin-bottom: 16px;
-
-  a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    margin-right: 16px;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-`;
-
 const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -33,10 +21,9 @@ const Content = styled.div`
   color: black;
 `;
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
 function PostPage () {
   const params = useParams();
+
   const { data: post, postError } = useSWR(
     `https://jsonplaceholder.typicode.com/posts/${params.postId}`,
     fetcher
@@ -49,7 +36,7 @@ function PostPage () {
 
   return (
     <Container>
-      <H1>Single Post</H1>
+      <Title text="Single Post" />
       { (postError || commentsError) && <Card>An error has ocurred :( </Card> }
       { (!post || !comments) && <Loading /> } 
 
@@ -58,7 +45,7 @@ function PostPage () {
           <>
             <Post post={post} />
             <Actions>
-              <Link to="/">{'< '} Return to all posts</Link>
+              <Link to="/">{'<< '} All posts</Link>
               <Link to={`/author/${post.userId}`}>More posts from this author {' >'}</Link>
             </Actions>            
           </>

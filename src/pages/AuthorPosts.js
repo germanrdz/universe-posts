@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import useSWR from "swr";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
+import fetcher from '../utils/fetcher';
+import Actions from '../components/shared/Actions';
 import Post from "../components/posts/Post";
 import Loading from "../components/shared/Loading";
 import Card from "../components/shared/Card";
@@ -14,10 +16,10 @@ const Content = styled.div`
   color: black;
 `;
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
 function AuthorPosts () {
   const { authorId } = useParams();
+  const navigate = useNavigate();
+
   const { data, error } = useSWR(
     "https://jsonplaceholder.typicode.com/posts",
     fetcher, 
@@ -36,8 +38,16 @@ function AuthorPosts () {
       <Content>
         { !data && <Loading /> }
         { error && <Card>An error has ocurred :( </Card>}
-        { data && authorPosts && authorPosts.map(post => (<Post key={post.id} post={post} />)) }
-        { data && authorPosts.length === 0 && <Card>This author does not have any posts.</Card>} 
+        { data && authorPosts.length === 0 && <Card>This author does not have any posts.</Card>}
+
+        { data && authorPosts && (
+          <>
+            { authorPosts.map(post => (<Post key={post.id} post={post} />)) }
+            <Actions>
+              <Link to="/">{'<< '} All posts</Link>
+            </Actions>
+          </>
+        )};
       </Content>
     </>
   );
