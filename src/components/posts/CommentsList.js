@@ -1,5 +1,3 @@
-// import styled from "styled-components";
-
 import Card from "../shared/Card";
 import Comment from "./Comment";
 import { H2 } from "../shared/Text";

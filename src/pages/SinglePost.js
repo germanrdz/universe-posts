@@ -9,7 +9,6 @@ import Post from "../components/posts/Post";
 import Card from "../components/shared/Card";
 import Loading from "../components/shared/Loading";
 import CommentsList from '../components/posts/CommentsList';
-import { H1 } from "../components/shared/Text";
 
 const Container = styled.div`
 `;
