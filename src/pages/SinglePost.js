@@ -33,32 +33,33 @@ function PostPage () {
     fetcher
   );
 
+  const isLoading = !post && !comments && !postError && commentsError;
+  const notFound = postError && postError.status === 404;
+
   return (
     <Container>
       <Title text="Single Post" />
-      { (postError || commentsError) && <Card>An error has ocurred :( </Card> }
-      { (!post || !comments) && <Loading /> } 
 
       <Content>
-        { post && (
+        { isLoading && <Loading /> }
+        { notFound && <Card>Post not found on server =(</Card> }      
+
+        { !isLoading && !notFound && (
           <>
-            <Post post={post} />
-            <Actions>
-              <Link to="/">{'<< '} All posts</Link>
-              <Link to={`/author/${post.userId}`}>More posts from this author {' >'}</Link>
-            </Actions>            
+            { post && (
+              <>
+                <Post post={post} />
+                <Actions>
+                  <Link to="/">{'<< '} All posts</Link>
+                  <Link to={`/author/${post.userId}`}>More posts from this author {' >'}</Link>
+                </Actions>            
+              </>
+            )}
+            { !comments && <Loading /> }
+            { comments &&  <CommentsList comments={comments} /> }
           </>
         )}
-
-        { !comments && <Loading /> }
-        { comments && (
-          <>
-            <CommentsList comments={comments} />
-          </>
-        )}
-      </Content>
-
-      
+      </Content>      
     </Container>
   );
 }
