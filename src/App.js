@@ -1,18 +1,27 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import GlobalStyle from './styles/globalStyles';
 import Layout from './components/global/Layout';
-import Content from './components/global/Content';
-import Posts from './pages/Posts';
+import AllPosts from './pages/AllPosts';
+import SinglePost from './pages/SinglePost';
+import AuthorPosts from './pages/AuthorPosts';
 
 function App() {
   return (
-    <div id="App">
+    <BrowserRouter>
       <GlobalStyle />
-      <Layout>
-        <Content>
-          <Posts />
-        </Content>
-      </Layout>
-    </div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<AllPosts />} />
+          <Route path="author/:authorId" element={<AuthorPosts />} />
+          <Route path=":postId" element={<SinglePost />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
