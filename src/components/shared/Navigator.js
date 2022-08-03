@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 1em;
 
   button {
     font-size: 3em;

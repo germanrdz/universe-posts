@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Loading = styled.div`
   margin: 100px auto;
-  font-size: 8px;
+  font-size: 0.5em;
   width: 1em;
   height: 1em;
   border-radius: 50%;

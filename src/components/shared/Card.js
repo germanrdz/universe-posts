@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-    padding: 32px;
+    padding: 2em;
     background-color: #FFF;
-    border-radius: 16px;
+    border-radius: 1em;
 `;
 
 function Card ({ children }) {

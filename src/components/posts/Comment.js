@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 16px 0;
+  margin: 1em 0;
 `;
 
 const Author = styled.div`

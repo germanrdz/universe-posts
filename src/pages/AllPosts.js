@@ -12,7 +12,7 @@ const Container = styled.div``;
 const Content = styled.div`
   display: grid;
   grid-template-rows: 1fr;
-  grid-gap: 16px;
+  grid-gap: 1em;
   color: black;
 `;
 

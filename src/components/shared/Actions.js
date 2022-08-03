@@ -8,7 +8,7 @@ const Actions = styled.div`
     color: white;
     text-decoration: none;
     display: inline-block;
-    margin-right: 16px;
+    margin-right: 1em;
   }
 
   a:hover, button:hover {
