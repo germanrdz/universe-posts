@@ -23,12 +23,12 @@ const Content = styled.div`
 function PostPage () {
   const params = useParams();
 
-  const { data: post, postError } = useSWR(
+  const { data: post, error: postError } = useSWR(
     `https://jsonplaceholder.typicode.com/posts/${params.postId}`,
     fetcher
   );
 
-  const { data: comments, commentsError } = useSWR(
+  const { data: comments, error: commentsError } = useSWR(
     `https://jsonplaceholder.typicode.com/posts/${params.postId}/comments`,
     fetcher
   );

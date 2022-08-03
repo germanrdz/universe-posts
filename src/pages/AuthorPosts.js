@@ -21,12 +21,7 @@ function AuthorPosts () {
 
   const { data, error } = useSWR(
     "https://jsonplaceholder.typicode.com/posts",
-    fetcher, 
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false
-    }
+    fetcher
   );
 
   const authorPosts = (data || []).filter(post => post.userId.toString() === authorId);
